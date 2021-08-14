@@ -1,11 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { memo, VFC } from 'react';
 import { Flex, Heading, Link, Box, useDisclosure } from '@chakra-ui/react';
 
 import { IconMenuButton } from '../../atoms/button/IconMenuButton';
 import { MenuDrawer } from '../../molecules/MenuDrawer';
+import { useHistory } from 'react-router';
+import { useCallback } from 'react';
 
 export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const histry = useHistory();
+
+  const navigateHome = useCallback(() => histry.push('/home'), []);
+  const navigateUserManagement = useCallback(
+    () => histry.push('/home/user_management'),
+    []
+  );
+  const navigateSetting = useCallback(() => histry.push('/home/setting'), []);
 
   return (
     <>
@@ -18,7 +29,11 @@ export const Header: VFC = memo(() => {
         padding={{ base: 3, md: 5 }}
       >
         <Flex as="a" align="center" mr={8} cursor="pointer">
-          <Heading as="h1" fontSize={{ base: 'md', md: 'lg' }}>
+          <Heading
+            as="h1"
+            fontSize={{ base: 'md', md: 'lg' }}
+            onClick={navigateHome}
+          >
             ユーザー管理アプリ
           </Heading>
         </Flex>
@@ -29,14 +44,20 @@ export const Header: VFC = memo(() => {
           display={{ base: 'none', md: 'flex' }}
         >
           <Box pr={4}>
-            <Link>ユーザー一覧</Link>
+            <Link onClick={navigateUserManagement}>ユーザー一覧</Link>
           </Box>
-          <Link>設定</Link>
+          <Link onClick={navigateSetting}>設定</Link>
         </Flex>
         <IconMenuButton onOpen={onOpen}></IconMenuButton>
       </Flex>
 
-      <MenuDrawer onClose={onClose} isOpen={isOpen}></MenuDrawer>
+      <MenuDrawer
+        onClose={onClose}
+        isOpen={isOpen}
+        navigateHome={navigateHome}
+        navigateUserManagement={navigateUserManagement}
+        navigateSetting={navigateSetting}
+      ></MenuDrawer>
     </>
   );
 });
