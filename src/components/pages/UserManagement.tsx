@@ -12,12 +12,19 @@ import { useAllUsers } from '../../hooks/useAllUsers';
 import { User } from '../../types/user';
 import { UserCard } from '../organisms/user/UserCard';
 import { UserDetailModal } from '../organisms/user/UserDetailModal';
+import { useSelectUser } from '../../hooks/useSelectUser';
 
 export const UserManagement: VFC = memo(() => {
   const { getUsers, loading, users } = useAllUsers();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { selectUser, selectedUser } = useSelectUser();
 
-  const openModal = useCallback(() => onOpen(), []);
+  const openModal = useCallback(
+    (id: number) => {
+      selectUser({ id, users, onOpen });
+    },
+    [onOpen, selectUser, users]
+  );
 
   useEffect(() => getUsers(), []);
 
@@ -36,7 +43,7 @@ export const UserManagement: VFC = memo(() => {
                   imageUrl="https://source.unsplash.com/random"
                   userName={user.username}
                   fullName={user.name}
-                  openModal={openModal}
+                  openModal={() => openModal(user.id)}
                 ></UserCard>
               </WrapItem>
             );
@@ -44,7 +51,11 @@ export const UserManagement: VFC = memo(() => {
         </Wrap>
       )}
 
-      <UserDetailModal isOpen={isOpen} onClose={onClose}></UserDetailModal>
+      <UserDetailModal
+        user={selectedUser}
+        isOpen={isOpen}
+        onClose={onClose}
+      ></UserDetailModal>
     </>
   );
 });
