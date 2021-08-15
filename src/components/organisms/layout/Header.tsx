@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { memo, VFC } from 'react';
 import { Flex, Heading, Link, Box, useDisclosure } from '@chakra-ui/react';
 
@@ -14,7 +13,7 @@ export const Header: VFC = memo(() => {
   const navigateHome = useCallback(() => histry.push('/home'), []);
   const navigateUserManagement = useCallback(
     () => histry.push('/home/user_management'),
-    []
+    [histry]
   );
   const navigateSetting = useCallback(() => histry.push('/home/setting'), []);
 
