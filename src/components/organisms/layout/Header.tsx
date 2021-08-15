@@ -10,12 +10,15 @@ export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const histry = useHistory();
 
-  const navigateHome = useCallback(() => histry.push('/home'), []);
+  const navigateHome = useCallback(() => histry.push('/home'), [histry]);
   const navigateUserManagement = useCallback(
     () => histry.push('/home/user_management'),
     [histry]
   );
-  const navigateSetting = useCallback(() => histry.push('/home/setting'), []);
+  const navigateSetting = useCallback(
+    () => histry.push('/home/setting'),
+    [histry]
+  );
 
   return (
     <>
