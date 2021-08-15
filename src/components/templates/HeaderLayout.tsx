@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const HeaderLayout: VFC<Props> = memo((props) => {
+export const HeaderLayout: VFC<Props> = memo((props: Props) => {
   const { children } = props;
 
   return (

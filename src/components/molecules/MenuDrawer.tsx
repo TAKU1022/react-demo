@@ -15,7 +15,7 @@ type Props = {
   navigateSetting: () => void;
 };
 
-export const MenuDrawer: VFC<Props> = memo((props) => {
+export const MenuDrawer: VFC<Props> = memo((props: Props) => {
   const {
     onClose,
     isOpen,

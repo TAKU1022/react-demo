@@ -8,7 +8,7 @@ type Props = {
   login: () => void;
 };
 
-export const PrimaryButton: VFC<Props> = memo((props) => {
+export const PrimaryButton: VFC<Props> = memo((props: Props) => {
   const { children, disabled = false, loading = false, login } = props;
 
   return (
