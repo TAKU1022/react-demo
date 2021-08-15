@@ -5,10 +5,11 @@ type Props = {
   imageUrl: string;
   userName: string;
   fullName: string;
+  openModal: () => void;
 };
 
 export const UserCard: VFC<Props> = memo((props: Props) => {
-  const { imageUrl, userName, fullName } = props;
+  const { imageUrl, userName, fullName, openModal } = props;
 
   return (
     <Box
@@ -20,6 +21,7 @@ export const UserCard: VFC<Props> = memo((props: Props) => {
       p={4}
       cursor="pointer"
       _hover={{ opacity: 0.8 }}
+      onClick={openModal}
     >
       <Stack textAlign="center">
         <Image
