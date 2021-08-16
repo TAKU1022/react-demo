@@ -21,7 +21,8 @@ export const UserManagement: VFC = memo(() => {
 
   const openModal = useCallback(
     (id: number) => {
-      selectUser({ id, users, onOpen });
+      selectUser({ id, users });
+      onOpen();
     },
     [onOpen, selectUser, users]
   );
