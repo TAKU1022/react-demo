@@ -13,11 +13,15 @@ import { User } from '../../types/user';
 import { UserCard } from '../organisms/user/UserCard';
 import { UserDetailModal } from '../organisms/user/UserDetailModal';
 import { useSelectUser } from '../../hooks/useSelectUser';
+import { useLoginUser } from '../../hooks/useLoginUser';
 
 export const UserManagement: VFC = memo(() => {
   const { getUsers, loading, users } = useAllUsers();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { selectUser, selectedUser } = useSelectUser();
+  const { loginUser } = useLoginUser();
+
+  console.log(loginUser);
 
   const openModal = useCallback(
     (id: number) => {
