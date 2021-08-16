@@ -5,11 +5,11 @@ type Props = {
   children: ReactNode;
   disabled?: boolean;
   loading?: boolean;
-  login: () => void;
+  onClick: () => void;
 };
 
 export const PrimaryButton: VFC<Props> = memo((props: Props) => {
-  const { children, disabled = false, loading = false, login } = props;
+  const { children, disabled = false, loading = false, onClick } = props;
 
   return (
     <Button
@@ -18,7 +18,7 @@ export const PrimaryButton: VFC<Props> = memo((props: Props) => {
       _hover={{ opacity: 0.8 }}
       disabled={disabled || loading}
       isLoading={loading}
-      onClick={login}
+      onClick={onClick}
     >
       {children}
     </Button>
